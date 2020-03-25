@@ -1,10 +1,10 @@
 .POSIX:
 
-CC ?= cc
-CFLAGS ?= -std=c99 -pedantic -Wall -Os
-LIBS ?= -lX11
-LDFLAGS ?= $(LIBS) -s
-PREFIX ?= /usr/local
+CC = cc
+CFLAGS = -Wall -Os
+LIBS = -lX11
+LDFLAGS = $(LIBS) -s
+PREFIX = /usr/local
 
 all: dwmblocks
 
@@ -15,7 +15,7 @@ dwmblocks: dwmblocks.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
 %.o: %.c config.h
-	$(CC) -o $@ -c $<
+	$(CC) -c $< $(CFLAGS) -o $@
 
 clean:
 	rm -f *.o dwmblocks
